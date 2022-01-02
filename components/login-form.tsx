@@ -28,7 +28,7 @@ export const LoginForm = (props: LoginForm) => {
         initialValues: {
             username: '',
             password: '',
-            twoFactor: ''
+            twoFactor: undefined
         },
         validate(values) {
             try {
@@ -46,7 +46,7 @@ export const LoginForm = (props: LoginForm) => {
                     headers: {
                         'Content-Type': 'application/json',
                         'username': `${Buffer.from(`${values.username}`).toString('base64')}`,
-                        'authtoken': values.twoFactor
+                        'authtoken': values.twoFactor as string
                     },
                     body: ""
                 });
@@ -130,7 +130,7 @@ export const LoginForm = (props: LoginForm) => {
             </div>
             {haveTwoFactor && (
                 <div className="mb-5">
-                    <label className="authgreen">Verifizierungscode</label>
+                    <label className="text-authgreen">Verifizierungscode</label>
                     <input
                         className="w-full bg-mygray p-2 px-3 rounded-lg text-fontwhite"
                         height={50}
