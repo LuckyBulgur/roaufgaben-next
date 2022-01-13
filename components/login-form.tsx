@@ -1,17 +1,12 @@
 import Button from './button';
+import { useRouter } from 'next/router';
 import { Login } from '../auth/validations';
 import { useFormik } from "formik"
 import { TypeOf } from 'zod';
-import getConfig from 'next/config';
 import { FC, useState } from 'react';
-import Cookies from 'js-cookie';
 import { Spinner } from 'evergreen-ui';
-
-const config = getConfig();
-
-type LoginForm = {
-    onSucces?: () => void
-}
+import useLoginMutation from '../hooks/login-mutation';
+import useTwoFactorMutation from '../hooks/two-factor-mutation';
 
 export const Title: FC = ({ children }) => {
     return (
@@ -19,10 +14,17 @@ export const Title: FC = ({ children }) => {
     );
 }
 
-export const LoginForm = (props: LoginForm) => {
+interface LoginProps {
+    onSuccess?: () => void;
+}
+
+export const LoginForm: FC<LoginProps> = (props: LoginProps) => {
 
     const [isLogginIn, setIsLogginIn] = useState(false);
     const [haveTwoFactor, setHaveTwoFactor] = useState(false);
+
+    const loginMutation = useLoginMutation();
+    const twoFactorMutation = useTwoFactorMutation();
 
     const form = useFormik<TypeOf<typeof Login>>({
         initialValues: {
@@ -41,49 +43,49 @@ export const LoginForm = (props: LoginForm) => {
             if (isLogginIn) return;
             setIsLogginIn(true);
             if (haveTwoFactor) {
-                const response = await fetch(`${config.publicRuntimeConfig.serverUrl}/verify2fa`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'username': `${Buffer.from(`${values.username}`).toString('base64')}`,
-                        'authtoken': values.twoFactor as string
-                    },
-                    body: ""
+                const twoFactorResult = await twoFactorMutation.mutateAsync({
+                    username: values.username,
+                    password: values.password,
+                    twoFactor: values.twoFactor as string
                 });
-                const json = await response.json();
 
-                if (json.message === "Gültiger Authcode") {
-                    Cookies.set('token', json.userkey, { expires: 7 });
-                    props.onSucces?.();
-                } else if (json.message === "Ungültiger Token") {
-                    form.errors.twoFactor = json.message;
+                const { access_token, message } = twoFactorResult;
+
+                if (access_token) {
+                    localStorage.setItem('authtoken', access_token);
+                    props.onSuccess?.();
+                } else if (message == "Unauthorized") {
+                    form.errors.password = "Falsches Passwort oder Benutzername";
                 } else {
-                    form.errors.twoFactor = json.message;
+                    form.errors.twoFactor = message;
                 }
                 setIsLogginIn(false);
                 return;
             };
             try {
-                const response = await fetch(`${config.publicRuntimeConfig.serverUrl}/login`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Basic ${Buffer.from(`${values.username}:${values.password}`).toString('base64')}`
-                    },
-                    body: ""
+                const loginResult = await loginMutation.mutateAsync({
+                    username: values.username,
+                    password: values.password
                 });
-                const json = await response.json();
-                if (json.message === "Sie werden eingeloggt") {
-                    Cookies.set('token', json.key, { expires: 7 });
-                    props.onSucces?.();
-                } else if (json.message === "2FA") {
+
+                const { access_token, message } = loginResult;
+
+                if (message === "You need to verify") {
                     setHaveTwoFactor(true);
+                    setIsLogginIn(false);
+                    return;
+                }
+
+                if (access_token) {
+                    localStorage.setItem('authtoken', access_token);
+                    props.onSuccess?.();
+                } else if (message == "Unauthorized") {
+                    form.errors.password = "Falsches Passwort oder Benutzername";
                 } else {
-                    form.errors.password = json.message;
+                    form.errors.password = message;
                 }
                 setIsLogginIn(false);
-            }
-            catch (error) {
+            } catch (error) {
                 setIsLogginIn(false);
                 form.errors.password = "Server Fehler, versuche es später erneut";
             }
@@ -120,7 +122,6 @@ export const LoginForm = (props: LoginForm) => {
                     placeholder="Passwort"
                     type="password"
                     id="password"
-                    autoComplete="current-password"
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
                 ></input>

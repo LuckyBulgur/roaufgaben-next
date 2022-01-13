@@ -5,12 +5,8 @@ import { TypeOf } from 'zod';
 import getConfig from 'next/config';
 import { FC, useState } from 'react';
 import { Spinner } from 'evergreen-ui';
-
-const config = getConfig();
-
-type SignUpForm = {
-    onSucces?: () => void
-}
+import useRegisterMutation from '../hooks/register-mutation';
+import { useRouter } from 'next/router';
 
 export const Title: FC = ({ children }) => {
     return (
@@ -18,9 +14,14 @@ export const Title: FC = ({ children }) => {
     );
 }
 
-export const SignupForm = (props: SignUpForm) => {
+interface SignUpProps {
+    onSuccess?: () => void;
+}
 
+export const SignupForm: FC<SignUpProps> = (props: SignUpProps) => {
     const [isRegister, setIsRegister] = useState(false);
+
+    const registerMutation = useRegisterMutation();
 
     const form = useFormik<TypeOf<typeof Signup>>({
         initialValues: {
@@ -39,25 +40,20 @@ export const SignupForm = (props: SignUpForm) => {
             if (isRegister) return;
             setIsRegister(true);
             try {
-                const response = await fetch(`${config.publicRuntimeConfig.serverUrl}/register`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Basic ${Buffer.from(`${values.username}:${values.password}`).toString('base64')}`
-                    },
-                    body: ""
+                const registerResult = await registerMutation.mutateAsync({
+                    username: values.username,
+                    password: values.password
                 });
-                const text = await response.text();
-                if (text != "Erfolgreich registriert") {
+
+                if (registerResult.message == "Dieser Benutzername ist bereits vergeben") {
                     setIsRegister(false);
-                    if (text.includes("Nutzername")) {
-                        form.errors.username = text;
-                        return;
-                    }
-                    form.errors.passwordRepeat = text;
+                    form.errors.username = registerResult.message;
                     return;
+                } else if (registerResult.message == "Erfolgreich registriert") {
+                    props.onSuccess?.();
+                } else {
+                    form.errors.passwordRepeat = registerResult.message;
                 }
-                props.onSucces?.();
             }
             catch (error) {
                 setIsRegister(true);
