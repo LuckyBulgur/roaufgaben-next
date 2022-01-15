@@ -12,8 +12,8 @@ import useDarkMode from '../../hooks/useDarkMode';
 const SideBar: FC = () => {
 
   return (
-    <div className="fixed top-0 left-0 h-screen w-16 flex flex-col
-                  bg-white dark:bg-gray-900 shadow-lg">
+    <div className="fixed  top-0 left-0 h-screen w-16 flex flex-col
+                  bg-white  dark:bg-gradient-to-t from-myblue to-second shadow-lg">
 
       <SideBarIcon href="/dashboard" text="Dashboard">
         <MdDashboard size="28" />
@@ -74,7 +74,7 @@ const SideBarIcon: FC<SideBarIconProps> = ({ children, text, href }) => {
   const isActive: Boolean = currentPath === href;
 
   return (
-    <div onClick={() => (href) && useRouter().push(href)} className={isActive ? "active-icon group" : "sidebar-icon group"}>
+    <div onClick={() => (href) && window.location.assign(href)} className={isActive ? "active-icon group" : "sidebar-icon group"}>
       {children}
       <span className="sidebar-tooltip group-hover:scale-100">
         {text}
