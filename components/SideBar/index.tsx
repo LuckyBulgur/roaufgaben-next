@@ -15,32 +15,32 @@ const SideBar: FC = () => {
     <div className="fixed  top-0 left-0 h-screen w-16 flex flex-col
                   bg-white  dark:bg-gradient-to-t from-myblue to-second shadow-lg">
 
-      <SideBarIcon href="/dashboard" text="Dashboard">
+      <SideBarIcon href="/dashboard">
         <MdDashboard size="28" />
       </SideBarIcon>
 
       <Divider />
 
-      <SideBarIcon href="/classes" text="Klassen">
+      <SideBarIcon href="/classes">
         <FaUsers size="23" />
       </SideBarIcon>
 
-      <SideBarIcon href="/tasks" text="Aufgaben">
+      <SideBarIcon href="/tasks">
         <FaTasks size="20" />
       </SideBarIcon>
 
-      <SideBarIcon href="/profile" text="Profil">
+      <SideBarIcon href="/profile">
         <CgProfile size="22" />
       </SideBarIcon>
 
       <Divider />
 
-      <SideBarIcon href="/settings" text="Einstellungen">
+      <SideBarIcon href="/settings">
         <BsGearFill size="22" />
       </SideBarIcon>
 
       <div className='mt-auto'>
-        <SideBarIcon text="Theme">
+        <SideBarIcon>
           <ThemeIcon />
         </SideBarIcon>
       </div>
@@ -50,7 +50,6 @@ const SideBar: FC = () => {
 };
 
 interface SideBarIconProps extends HTMLProps<HTMLDivElement> {
-  text: string;
   href?: string;
 }
 
@@ -69,16 +68,13 @@ const ThemeIcon: FC = () => {
   );
 };
 
-const SideBarIcon: FC<SideBarIconProps> = ({ children, text, href }) => {
+const SideBarIcon: FC<SideBarIconProps> = ({ children, href }) => {
   const currentPath = useRouter().pathname;
   const isActive: Boolean = currentPath === href;
 
   return (
     <div onClick={() => (href) && window.location.assign(href)} className={isActive ? "active-icon group" : "sidebar-icon group"}>
       {children}
-      <span className="sidebar-tooltip group-hover:scale-100">
-        {text}
-      </span>
     </div>
   )
 };

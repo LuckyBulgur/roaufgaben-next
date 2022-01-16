@@ -3,6 +3,7 @@ import useClasses from "../hooks/use-classes";
 import { format, formatDistance } from "date-fns";
 import { de } from "date-fns/locale";
 import { FaPlus } from "react-icons/fa";
+import { Button } from "evergreen-ui";
 
 interface ClassProps {
     data: {

@@ -2,11 +2,9 @@ import Button from './button';
 import { Signup } from '../auth/validations';
 import { useFormik } from "formik"
 import { TypeOf } from 'zod';
-import getConfig from 'next/config';
 import { FC, useState } from 'react';
 import { Spinner } from 'evergreen-ui';
 import useRegisterMutation from '../hooks/register-mutation';
-import { useRouter } from 'next/router';
 
 export const Title: FC = ({ children }) => {
     return (
