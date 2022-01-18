@@ -32,13 +32,8 @@ const ClassItem: FC<ClassProps> = (props: ClassProps) => {
     );
 }
 
-const ClassList: FC = () => {
-
-    let classes: any;
-
-    if (typeof window !== 'undefined') {
-        classes = useClasses(localStorage.getItem('authtoken') as string);
-    }
+const Classes: FC = () => {
+    const classes = useClasses(localStorage.getItem('authtoken') as string);
 
     return (
         <div className="w-full mt-4" >
@@ -50,7 +45,16 @@ const ClassList: FC = () => {
             </div>
         </div >
     );
+}
 
+const ClassList: FC = () => {
+    const [isLoading, setIsLoading] = useState(false);
+
+    if (typeof window !== 'undefined' && isLoading == false) {
+        setIsLoading(true);
+        return <Classes></Classes>;
+    }
+    return <div></div>;
 }
 
 export default ClassList;
