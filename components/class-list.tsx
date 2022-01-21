@@ -4,6 +4,7 @@ import { format, formatDistance } from "date-fns";
 import { de } from "date-fns/locale";
 import { FaPlus } from "react-icons/fa";
 import { Button } from "evergreen-ui";
+import Link from "next/link";
 
 interface ClassProps {
     data: {
@@ -19,16 +20,18 @@ interface ClassProps {
 
 const ClassItem: FC<ClassProps> = (props: ClassProps) => {
     return (
-        <div onClick={() => window.location.assign('/tasks/' + props.data.id)} className="w-auto mr-2 h-24 mt-4 rounded-xl bg-myblue backdrop-blur-xl bg-opacity-40 hover:border-green-600 hover:cursor-pointer border-2 text-fontwhite ml-4" key={props.data.id}>
-            <div className="font-medium text-2xl ml-2 mt-2 font-sans">Klasse {props.data.name}</div>
-            <div className="text-xs ml-2 font-sans">Erstellt {formatDistance(new Date(props.data.reg_date), new Date(), {
-                addSuffix: true,
-                locale: de
-            })}</div>
-            <div className="flex justify-end">
-                <div className="text-xs ml-2 mt-4 mr-2 font-sans">Erstellt von {props.data.creator.username}</div>
+        <Link href={'/tasks/' + props.data.id}>
+            <div className="w-auto mr-2 h-24 mt-4 rounded-xl bg-myblue backdrop-blur-xl bg-opacity-40 hover:border-green-600 hover:cursor-pointer border-2 text-fontwhite ml-4" key={props.data.id}>
+                <div className="font-medium text-2xl ml-2 mt-2 font-sans">Klasse {props.data.name}</div>
+                <div className="text-xs ml-2 font-sans">Erstellt {formatDistance(new Date(props.data.reg_date), new Date(), {
+                    addSuffix: true,
+                    locale: de
+                })}</div>
+                <div className="flex justify-end">
+                    <div className="text-xs ml-2 mt-4 mr-2 font-sans">Erstellt von {props.data.creator.username}</div>
+                </div>
             </div>
-        </div>
+        </Link>
     );
 }
 
@@ -48,10 +51,13 @@ const Classes: FC = () => {
 }
 
 const ClassList: FC = () => {
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
-    if (typeof window !== 'undefined' && isLoading == false) {
-        setIsLoading(true);
+    useEffect(() => {
+        setIsLoading(false);
+    }, [typeof window !== 'undefined']);
+
+    if (!isLoading) {
         return <Classes></Classes>;
     }
     return <div></div>;

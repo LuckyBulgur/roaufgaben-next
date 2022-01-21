@@ -4,6 +4,8 @@ import { format, formatDistance } from "date-fns";
 import { de } from "date-fns/locale";
 import { FaPlus } from "react-icons/fa";
 import { Subject } from '../enums/subject'
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 interface TaskProps {
     data: {
@@ -39,25 +41,35 @@ interface TaskListProps {
     classId: string;
 }
 
-const TaskList: FC<TaskListProps> = ({ classId }) => {
+const Tasks: FC<TaskListProps> = ({ classId }) => {
 
-    let tasks: any;
-
-    if (typeof window !== 'undefined') {
-        tasks = useTasks(localStorage.getItem('authtoken') as string, classId);
-    }
+    const tasks = useTasks(localStorage.getItem('authtoken') as string, classId);
 
     return (
         <div className="w-full mt-4" >
             {tasks && tasks.isSuccess && tasks.data?.map((task: any, index: number) => (
                 <TaskItem key={index} data={task}></TaskItem>
             ))}
-            <div onClick={() => window.location.assign('/tasks/' + classId + "/create")} className="w-auto flex justify-center items-center mr-2 h-20 mt-4 rounded-xl bg-myblue backdrop-blur-xl bg-opacity-40 hover:border-green-600 hover:cursor-pointer border-2 text-fontwhite ml-4" >
-                <FaPlus></FaPlus>
-            </div>
-        </div >
+            <Link href={`/tasks/${classId}/create`}>
+                <div className="w-auto flex justify-center items-center mr-2 h-20 mt-4 rounded-xl bg-myblue backdrop-blur-xl bg-opacity-40 hover:border-green-600 hover:cursor-pointer border-2 text-fontwhite ml-4" >
+                    <FaPlus></FaPlus>
+                </div>
+            </Link>
+        </div>
     );
+}
 
+const TaskList: FC<TaskListProps> = ({ classId }) => {
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        setIsLoading(false);
+    }, [typeof window !== 'undefined']);
+
+    if (!isLoading) {
+        return <Tasks classId={classId}></Tasks>;
+    }
+    return <div></div>;
 }
 
 export default TaskList;
