@@ -20,7 +20,7 @@ interface ClassProps {
 
 const ClassItem: FC<ClassProps> = (props: ClassProps) => {
     return (
-        <Link href={'/tasks/' + props.data.id}>
+        <Link href={'/tasks/' + props.data.id} passHref>
             <div className="w-auto mr-2 h-24 mt-4 rounded-xl bg-myblue backdrop-blur-xl bg-opacity-40 hover:border-green-600 hover:cursor-pointer border-2 text-fontwhite ml-4" key={props.data.id}>
                 <div className="font-medium text-2xl ml-2 mt-2 font-sans">Klasse {props.data.name}</div>
                 <div className="text-xs ml-2 font-sans">Erstellt {formatDistance(new Date(props.data.reg_date), new Date(), {
@@ -55,7 +55,7 @@ const ClassList: FC = () => {
 
     useEffect(() => {
         setIsLoading(false);
-    }, [typeof window !== 'undefined']);
+    }, []);
 
     if (!isLoading) {
         return <Classes></Classes>;

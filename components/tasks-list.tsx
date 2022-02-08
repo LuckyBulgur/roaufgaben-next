@@ -50,7 +50,7 @@ const Tasks: FC<TaskListProps> = ({ classId }) => {
             {tasks && tasks.isSuccess && tasks.data?.map((task: any, index: number) => (
                 <TaskItem key={index} data={task}></TaskItem>
             ))}
-            <Link href={`/tasks/${classId}/create`}>
+            <Link href={`/tasks/${classId}/create`} passHref>
                 <div className="w-auto flex justify-center items-center mr-2 h-20 mt-4 rounded-xl bg-myblue backdrop-blur-xl bg-opacity-40 hover:border-green-600 hover:cursor-pointer border-2 text-fontwhite ml-4" >
                     <FaPlus></FaPlus>
                 </div>
@@ -64,7 +64,7 @@ const TaskList: FC<TaskListProps> = ({ classId }) => {
 
     useEffect(() => {
         setIsLoading(false);
-    }, [typeof window !== 'undefined']);
+    }, []);
 
     if (!isLoading) {
         return <Tasks classId={classId}></Tasks>;
