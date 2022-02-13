@@ -55,13 +55,13 @@ export const CreateClassForm: FC<CreateClassProps> = (props: CreateClassProps) =
     return (
         <form onSubmit={form.handleSubmit}>
             <div className="mb-1">
-                <label className="text-authgreen">Name</label>
+                <label className="text-authgreen">Klassenname</label>
                 <input
                     className="w-full bg-mygray p-2 px-3 rounded-lg text-fontwhite"
                     height={50}
                     width={'100%'}
                     name="name"
-                    placeholder="Name"
+                    placeholder="Klassenname"
                     id="name"
                     autoComplete="current-name"
                     onChange={form.handleChange}

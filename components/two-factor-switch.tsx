@@ -1,7 +1,6 @@
 import { Switch } from 'evergreen-ui';
 import { FC } from 'react';
 import { useEffect, useState } from 'react';
-import { MobileView } from 'react-device-detect';
 
 import useCreateTwoFactorMutation from '../hooks/create-2fa-mutation';
 
@@ -38,9 +37,6 @@ export const TwoFactorSwitch: FC<TwoFactorSwitchProps> = ({ haveTwoFactor }) => 
                     <div className='mt-2 text-lg'>
                         <span className='text-fontwhite'>Scanne nun diesen QR Code mit der Google Authenticator App</span>
                     </div>
-                    <MobileView>
-                        <a className='text-fontwhite' href={twoFactor.link}>Oder klicke hier</a>
-                    </MobileView>
                 </>
             }
         </div>

@@ -23,7 +23,7 @@ export const CardItem: FC = ({ children }) => {
 
 const Card: FC<CardProps> = ({ className, children, ...props }) => {
     return (
-        <div className={classnames("bg-myblue w-96 bg-opacity-20 backdrop-blur-xl p-7 rounded-xl", className)}>
+        <div className={classnames("bg-myblue bg-opacity-20 backdrop-blur-xl p-7 rounded-xl", className)}>
             <Title>{props.title}</Title>
             {children}
         </div>
