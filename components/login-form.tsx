@@ -1,13 +1,14 @@
-import Button from './button';
-import { useRouter } from 'next/router';
-import { Login } from '../auth/validations';
-import { useFormik } from "formik"
-import { TypeOf } from 'zod';
-import { FC, useState } from 'react';
 import { Spinner } from 'evergreen-ui';
+import { useFormik } from 'formik';
+import Cookies from 'js-cookie';
+import Link from 'next/link';
+import { FC, useState } from 'react';
+import { TypeOf } from 'zod';
+
+import { Login } from '../auth/validations';
 import useLoginMutation from '../hooks/login-mutation';
 import useTwoFactorMutation from '../hooks/two-factor-mutation';
-import Cookies from 'js-cookie';
+import Button from './button';
 
 interface LoginProps {
     onSuccess?: () => void;
@@ -144,7 +145,7 @@ export const LoginForm: FC<LoginProps> = (props: LoginProps) => {
             }
             <Button disabled={isLogginIn} className="bg-authgreen text-myblue font-medium px-4 w-full hover:bg-secgreen py-2 rounded-lg mt-5">{(isLogginIn) ? <Spinner marginX="auto" size={24}></Spinner> : (haveTwoFactor) ? "Verifizieren" : "Anmelden"}</Button>
             <div className={haveTwoFactor ? 'hidden' : 'mt-2'}>
-                <a href="./register" className='text-fontwhite'>Kein Account? Jetzt Registrieren</a>
+                <Link href="/register"><div className='text-fontwhite cursor-pointer'>Kein Account? Jetzt Registrieren</div></Link>
             </div>
         </form>
     )

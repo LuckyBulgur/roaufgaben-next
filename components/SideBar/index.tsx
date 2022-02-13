@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { FC, HTMLProps } from 'react';
+import { FC, HTMLProps, useEffect } from 'react';
 import { BsGearFill } from 'react-icons/bs';
 import { CgProfile } from 'react-icons/cg';
 import { FaMoon, FaSun, FaTasks, FaUsers } from 'react-icons/fa';

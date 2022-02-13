@@ -1,5 +1,6 @@
-import { FC } from "react";
-import { Link } from "./nav";
+import { FC } from 'react';
+
+import { Link } from './nav';
 
 
 const Footer: FC = () => {
@@ -7,9 +8,9 @@ const Footer: FC = () => {
     return (
         <div className='justify-between items-center flex-row-reverse pr-4 pl-4 max-h-12 pt-6 sm:flex ml-auto sm:max-w-7xl'>
             <ul className='list-none leading-none items-center sm:flex mb-3'>
-                <Link href=''>Impressum</Link>
-                <Link href=''>Datenschutzerklärung</Link>
-                <Link href=''>Nutzungsbedingungen</Link>
+                <Link href='/impressum'>Impressum</Link>
+                <Link href='/privacy'>Datenschutzerklärung</Link>
+                <Link href='/privacy'>Nutzungsbedingungen</Link>
             </ul>
         </div >
     );
