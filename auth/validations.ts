@@ -1,5 +1,6 @@
-import * as z from "zod"
-import { isISODate } from "../helpers/isISODate";
+import * as z from 'zod';
+
+import { isISODate } from '../helpers/isISODate';
 
 const username = z.string()
     .min(4, { message: "Der Nutzername muss mindestens 4 Zeichen beinhalten." })
@@ -17,6 +18,11 @@ export const Signup = z.object({
     message: "Die Passwörter stimmen nicht überein.",
     path: ["passwordRepeat"],
 });
+
+export const ResetPassword = z.object({
+    password: password,
+});
+
 
 export const Login = z.object({
     username: username,

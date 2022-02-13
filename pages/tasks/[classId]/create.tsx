@@ -1,7 +1,7 @@
-import { NextPage } from "next";
-import { useRouter } from "next/router";
-import { CreateTaskForm } from "../../../components/create-task-form";
-import TaskList from "../../../components/tasks-list";
+import { NextPage } from 'next';
+import { useRouter } from 'next/router';
+
+import { CreateTaskForm } from '../../../components/create-task-form';
 
 interface TasksPageProps {
     classId: string;
@@ -9,10 +9,12 @@ interface TasksPageProps {
 
 const CreateTask: NextPage<TasksPageProps> = ({ classId }) => {
 
+    const router = useRouter();
+
     return (
         <div className="min-h-screen min-w-screen flex bg-gradient-to-t items-center justify-center ml-16 from-myblue to-second" >
             <div className="bg-myblue bg-opacity-20 backdrop-blur-xl p-7 rounded-xl">
-                <CreateTaskForm onSuccess={() => window.location.assign('/tasks/' + classId)} classId={classId}></CreateTaskForm>
+                <CreateTaskForm onSuccess={() => router.push('/tasks/' + classId)} classId={classId}></CreateTaskForm>
             </div>
         </div >
     );

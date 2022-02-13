@@ -4,11 +4,11 @@ import { useQuery } from 'react-query';
 
 const { publicRuntimeConfig } = getConfig()
 
-export const fetchTasks = async (classId: string) => {
+export const fetchAllTasks = async () => {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Authorization', 'Bearer ' + Cookies.get("access_token"));
-    const data = await fetch(`${publicRuntimeConfig.serverUrl}/class/tasks/` + classId, { headers });
+    const data = await fetch(`${publicRuntimeConfig.serverUrl}/class/tasks/`, { headers });
     const json = await data.json();
     if (json.message == "Unauthorized") {
         return null;
@@ -16,7 +16,7 @@ export const fetchTasks = async (classId: string) => {
     return json;
 }
 
-const useTasks = (classId: string) => useQuery(['tasks'], () => fetchTasks(classId))
+const useAllTasks = () => useQuery(['allTasks'], () => fetchAllTasks())
 
-export default useTasks;
+export default useAllTasks;
 

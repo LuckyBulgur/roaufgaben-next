@@ -1,16 +1,11 @@
-import Button from './button';
-import { Signup } from '../auth/validations';
-import { useFormik } from "formik"
-import { TypeOf } from 'zod';
-import { FC, useState } from 'react';
 import { Spinner } from 'evergreen-ui';
-import useRegisterMutation from '../hooks/register-mutation';
+import { useFormik } from 'formik';
+import { FC, useState } from 'react';
+import { TypeOf } from 'zod';
 
-export const Title: FC = ({ children }) => {
-    return (
-        <h1 className="text-4xl sm:text-6xl text-fontwhite text-center mb-7">{children}</h1>
-    );
-}
+import { Signup } from '../auth/validations';
+import useRegisterMutation from '../hooks/register-mutation';
+import Button from './button';
 
 interface SignUpProps {
     onSuccess?: () => void;
@@ -54,7 +49,7 @@ export const SignupForm: FC<SignUpProps> = (props: SignUpProps) => {
                 }
             }
             catch (error) {
-                setIsRegister(true);
+                setIsRegister(false);
                 console.log(error);
             }
         }

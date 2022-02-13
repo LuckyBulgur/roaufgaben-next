@@ -1,7 +1,5 @@
-import { HTMLProps } from "react";
-import { FC } from "react"
-import image from '../public/logo.png';
-import Image from 'next/image'
+import { HTMLProps } from 'react';
+import { FC } from 'react';
 
 const Nav: FC = ({ children }) => {
     return (

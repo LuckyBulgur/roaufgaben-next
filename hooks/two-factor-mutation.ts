@@ -1,5 +1,5 @@
-import { useMutation } from "react-query";
-import getConfig from 'next/config'
+import getConfig from 'next/config';
+import { useMutation } from 'react-query';
 
 const { publicRuntimeConfig } = getConfig()
 

@@ -4,18 +4,18 @@ import { useMutation } from 'react-query';
 
 const { publicRuntimeConfig } = getConfig()
 
-const createClassMutation = () => useMutation(async (data: { name: string }) => {
+const resetPasswordMutation = () => useMutation(async (data: { password: string }) => {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Authorization', 'Bearer ' + Cookies.get("access_token"));
-    const response = await fetch(`${publicRuntimeConfig.serverUrl}/class/create`, {
+    const response = await fetch(`${publicRuntimeConfig.serverUrl}/user/change-password`, {
         method: 'POST',
         headers,
         body: JSON.stringify({
-            name: data.name,
+            password: data.password
         }),
     });
     return await response.json()
 });
 
-export default createClassMutation;
+export default resetPasswordMutation;

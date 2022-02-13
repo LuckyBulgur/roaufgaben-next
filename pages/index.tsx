@@ -1,6 +1,7 @@
-import type { NextPage } from 'next';
-import Header from '../components/header';
+import { NextPage } from 'next';
+
 import Footer from '../components/footer';
+import Header from '../components/header';
 import HomePage from '../components/home';
 
 const Home: NextPage = () => {

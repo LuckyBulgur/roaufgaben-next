@@ -1,16 +1,19 @@
 import { ElementType, FC, HTMLProps } from "react";
-import { Button, ButtonOwnProps } from "evergreen-ui";
 
-interface Props extends ButtonOwnProps {
-    appearance?: "primary" | "minimal" | "default";
+interface ButtonProps {
+    className?: string;
+    children?: React.ReactNode;
+    disabled?: boolean;
+    type?: 'button' | 'submit' | 'reset';
 }
 
-const button: FC<Props> = ({
+const button: FC<ButtonProps> = ({
     className,
     children,
+    disabled,
     ...props
 }) => {
-    return <button type="submit" className={"p-6 " + className} {...props}>{children}</button>;
+    return <button disabled={disabled} type="submit" className={"p-6 " + className} {...props}>{children}</button>;
 };
 
 export default button;

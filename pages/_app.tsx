@@ -1,8 +1,10 @@
 import '../styles/globals.css';
-import SideBar from '../components/SideBar';
-import type { AppProps } from 'next/app'
+
+import { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import { QueryClient, QueryClientProvider } from 'react-query';
+
+import SideBar from '../components/SideBar';
 
 
 function MyApp({ Component, pageProps }: AppProps) {

@@ -1,12 +1,13 @@
-import { useMutation } from "react-query";
-import getConfig from 'next/config'
+import Cookies from 'js-cookie';
+import getConfig from 'next/config';
+import { useMutation } from 'react-query';
 
 const { publicRuntimeConfig } = getConfig()
 
-const createTaskMutation = () => useMutation(async (data: { subject: string, task: string, submission: string, token: string, classId: string }) => {
+const createTaskMutation = () => useMutation(async (data: { subject: string, task: string, submission: string, classId: string }) => {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    headers.append('Authorization', 'Bearer ' + data.token);
+    headers.append('Authorization', 'Bearer ' + Cookies.get("access_token"));
     const response = await fetch(`${publicRuntimeConfig.serverUrl}/tasks/create/${data.classId}`, {
         method: 'POST',
         headers,

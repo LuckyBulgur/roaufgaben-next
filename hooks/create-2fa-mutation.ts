@@ -4,18 +4,12 @@ import { useMutation } from 'react-query';
 
 const { publicRuntimeConfig } = getConfig()
 
-const createClassMutation = () => useMutation(async (data: { name: string }) => {
+const createTwoFactorMutation = () => useMutation(async () => {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Authorization', 'Bearer ' + Cookies.get("access_token"));
-    const response = await fetch(`${publicRuntimeConfig.serverUrl}/class/create`, {
-        method: 'POST',
-        headers,
-        body: JSON.stringify({
-            name: data.name,
-        }),
-    });
+    const response = await fetch(`${publicRuntimeConfig.serverUrl}/auth/create-auth-code`, { headers });
     return await response.json()
 });
 
-export default createClassMutation;
+export default createTwoFactorMutation;

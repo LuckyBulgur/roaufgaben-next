@@ -1,9 +1,8 @@
-import { FC, HTMLProps } from 'react';
 import { useRouter } from 'next/router';
-
+import { FC, HTMLProps } from 'react';
 import { BsGearFill } from 'react-icons/bs';
 import { CgProfile } from 'react-icons/cg';
-import { FaMoon, FaSun, FaUsers, FaTasks } from 'react-icons/fa';
+import { FaMoon, FaSun, FaTasks, FaUsers } from 'react-icons/fa';
 import { MdDashboard } from 'react-icons/md';
 
 import useDarkMode from '../../hooks/useDarkMode';
@@ -71,9 +70,10 @@ const ThemeIcon: FC = () => {
 const SideBarIcon: FC<SideBarIconProps> = ({ children, href }) => {
   const currentPath = useRouter().pathname;
   const isActive: Boolean = currentPath === href;
+  const router = useRouter();
 
   return (
-    <div onClick={() => (href) && window.location.assign(href)} className={isActive ? "active-icon group" : "sidebar-icon group"}>
+    <div onClick={() => (href) && router.push(href)} className={isActive ? "active-icon group" : "sidebar-icon group"}>
       {children}
     </div>
   )

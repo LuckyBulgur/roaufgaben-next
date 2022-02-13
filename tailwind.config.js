@@ -9,6 +9,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontSize: {
+        'tiny': '.75rem',
+      },
       maxWidth: {
         '37': '37.333333%',
         '58': '58.333333%',

@@ -1,19 +1,13 @@
-import Button from './button';
-import { Task } from '../auth/validations';
-import { useFormik } from "formik"
-import { TypeOf } from 'zod';
-import getConfig from 'next/config';
-import { FC, useState } from 'react';
 import { Spinner } from 'evergreen-ui';
-import useCreateTaskMutation from '../hooks/create-task-mutation';
-import { useRouter } from 'next/router';
-import { Subject } from '../enums/subject'
+import { useFormik } from 'formik';
+import { FC, useState } from 'react';
+import { TypeOf } from 'zod';
 
-export const Title: FC = ({ children }) => {
-    return (
-        <h1 className="text-4xl sm:text-6xl text-fontwhite text-center mb-7">{children}</h1>
-    );
-}
+import { Task } from '../auth/validations';
+import { Subject } from '../enums/subject';
+import useCreateTaskMutation from '../hooks/create-task-mutation';
+import Button from './button';
+
 
 interface CreateTaskProps {
     onSuccess?: () => void;
@@ -49,7 +43,6 @@ export const CreateTaskForm: FC<CreateTaskProps> = (props: CreateTaskProps) => {
                     subject: values.subject,
                     task: values.task,
                     submission: values.submission,
-                    token: localStorage.getItem('authtoken') as string,
                     classId: props.classId as string
                 });
 

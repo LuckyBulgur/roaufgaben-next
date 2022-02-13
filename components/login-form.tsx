@@ -7,12 +7,7 @@ import { FC, useState } from 'react';
 import { Spinner } from 'evergreen-ui';
 import useLoginMutation from '../hooks/login-mutation';
 import useTwoFactorMutation from '../hooks/two-factor-mutation';
-
-export const Title: FC = ({ children }) => {
-    return (
-        <h1 className="text-4xl sm:text-6xl text-fontwhite text-center mb-7">{children}</h1>
-    );
-}
+import Cookies from 'js-cookie';
 
 interface LoginProps {
     onSuccess?: () => void;
@@ -52,7 +47,7 @@ export const LoginForm: FC<LoginProps> = (props: LoginProps) => {
                 const { access_token, message } = twoFactorResult;
 
                 if (access_token) {
-                    localStorage.setItem('authtoken', access_token);
+                    Cookies.set("access_token", access_token);
                     props.onSuccess?.();
                 } else if (message == "Unauthorized") {
                     form.errors.password = "Falsches Passwort oder Benutzername";
@@ -77,7 +72,7 @@ export const LoginForm: FC<LoginProps> = (props: LoginProps) => {
                 }
 
                 if (access_token) {
-                    localStorage.setItem('authtoken', access_token);
+                    Cookies.set("access_token", access_token);
                     props.onSuccess?.();
                 } else if (message == "Unauthorized") {
                     form.errors.password = "Falsches Passwort oder Benutzername";

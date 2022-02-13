@@ -1,19 +1,11 @@
-import Button from './button';
-import { Class } from '../auth/validations';
-import { useFormik } from "formik"
-import { TypeOf } from 'zod';
-import getConfig from 'next/config';
-import { FC, useState } from 'react';
 import { Spinner } from 'evergreen-ui';
-import useCreateClassMutation from '../hooks/create-class-mutation';
-import { useRouter } from 'next/router';
-import { Subject } from '../enums/subject'
+import { useFormik } from 'formik';
+import { FC, useState } from 'react';
+import { TypeOf } from 'zod';
 
-export const Title: FC = ({ children }) => {
-    return (
-        <h1 className="text-4xl sm:text-6xl text-fontwhite text-center mb-7">{children}</h1>
-    );
-}
+import { Class } from '../auth/validations';
+import useCreateClassMutation from '../hooks/create-class-mutation';
+import Button from './button';
 
 interface CreateClassProps {
     onSuccess?: () => void;
@@ -41,8 +33,7 @@ export const CreateClassForm: FC<CreateClassProps> = (props: CreateClassProps) =
             try {
 
                 const createClassResult = await createClassMutation.mutateAsync({
-                    name: values.name,
-                    token: localStorage.getItem('authtoken') as string
+                    name: values.name
                 });
 
                 const { message } = createClassResult;
