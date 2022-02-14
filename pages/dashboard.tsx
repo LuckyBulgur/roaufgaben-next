@@ -16,7 +16,7 @@ const Dashboard: NextPage = () => {
         <div className="min-h-screen min-w-screen flex bg-gradient-to-t ml-16 from-myblue to-second" >
             <div className='flex w-full items-center'>
                 <Card className='ml-32 w-96' title='Neuste Aufgaben'>
-                    {newTasks && newTasks.isSuccess && newTasks.data?.map((task: any, index: number) => (
+                    {(newTasks && newTasks.isSuccess && newTasks.data?.length != 0) ? newTasks.data?.map((task: any, index: number) => (
                         (index < 3) &&
                         <CardItem key={index}>
                             <div className='flex flex-wrap text-2xl m-0 flex-col'>
@@ -30,10 +30,10 @@ const Dashboard: NextPage = () => {
                                 </div>
                             </div>
                         </CardItem>
-                    ))}
+                    )) : <CardItem><div className='text-center text-gray-200'>Keine Aufgaben vorhanden</div></CardItem>}
                 </Card>
                 <Card className='ml-20 w-[60%] mr-4' title='Dringende Aufgaben'>
-                    {tasks && tasks.isSuccess && tasks.data?.map((task: any, index: number) => (
+                    {(tasks && tasks.isSuccess && tasks.data?.length != 0) ? tasks.data?.map((task: any, index: number) => (
                         (index < 3) &&
                         <CardItem key={index}>
                             <div className='flex flex-wrap text-2xl m-0 flex-col'>
@@ -47,7 +47,7 @@ const Dashboard: NextPage = () => {
                                 </div>
                             </div>
                         </CardItem>
-                    ))}
+                    )) : <CardItem><div className='text-center text-gray-200'>Keine Aufgaben vorhanden</div></CardItem>}
                 </Card>
             </div>
         </div >

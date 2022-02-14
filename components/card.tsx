@@ -24,7 +24,7 @@ export const CardItem: FC = ({ children }) => {
 const Card: FC<CardProps> = ({ className, children, ...props }) => {
     return (
         <div className={classnames("bg-myblue bg-opacity-20 backdrop-blur-xl p-7 rounded-xl", className)}>
-            <Title>{props.title}</Title>
+            <h1 className='text-xl sm:text-2xl text-fontwhite text-center mb-7 font-bold'>{props.title}</h1>
             {children}
         </div>
     );
