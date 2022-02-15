@@ -145,7 +145,7 @@ export const LoginForm: FC<LoginProps> = (props: LoginProps) => {
             }
             <Button disabled={isLogginIn} className="bg-authgreen text-myblue font-medium px-4 w-full hover:bg-secgreen py-2 rounded-lg mt-5">{(isLogginIn) ? <Spinner marginX="auto" size={24}></Spinner> : (haveTwoFactor) ? "Verifizieren" : "Anmelden"}</Button>
             <div className={haveTwoFactor ? 'hidden' : 'mt-2'}>
-                <Link href="/register"><div className='text-fontwhite cursor-pointer'>Kein Account? Jetzt Registrieren</div></Link>
+                <Link passHref href="/register"><div className='text-fontwhite cursor-pointer'>Kein Account? Jetzt Registrieren</div></Link>
             </div>
         </form>
     )

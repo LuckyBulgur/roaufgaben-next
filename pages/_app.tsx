@@ -19,21 +19,20 @@ function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
   useEffect(() => {
-    checkIsUserLoggedIn();
-  }, []);
-
-  const checkIsUserLoggedIn = async () => {
-    if (!paths.includes(currentPath)) {
-      const headers = new Headers();
-      headers.append('Content-Type', 'application/json');
-      headers.append('Authorization', 'Bearer ' + Cookies.get("access_token"));
-      const data = await fetch(`${publicRuntimeConfig.serverUrl}/user`, { headers });
-      const json = await data.json();
-      if (json.message == "Unauthorized") {
-        router.push('/login');
+    const checkIsUserLoggedIn = async () => {
+      if (!paths.includes(currentPath)) {
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Authorization', 'Bearer ' + Cookies.get("access_token"));
+        const data = await fetch(`${publicRuntimeConfig.serverUrl}/user`, { headers });
+        const json = await data.json();
+        if (json.message == "Unauthorized") {
+          router.push('/login');
+        }
       }
     }
-  }
+    checkIsUserLoggedIn();
+  }, []);
 
   return (
     <>

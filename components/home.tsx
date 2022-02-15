@@ -8,7 +8,7 @@ interface HomePageProps {
 
 const LinkButton: FC<HTMLProps<HTMLAnchorElement>> = ({ children, ...props }) => {
     return (
-        <Link href={props.href!}><div className='font-semibold flex cursor-pointer items-center h-8 sm:h-12 px-6 rounded-lg justify-center hover:bg-green-500 text-xs sm:text-base w-36 sm:w-44 text-fontwhite bg-green-600'>{children}</div></Link>
+        <Link passHref href={props.href!}><div className='font-semibold flex cursor-pointer items-center h-8 sm:h-12 px-6 rounded-lg justify-center hover:bg-green-500 text-xs sm:text-base w-36 sm:w-44 text-fontwhite bg-green-600'>{children}</div></Link>
     );
 };
 

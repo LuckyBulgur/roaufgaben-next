@@ -113,7 +113,7 @@ export const SignupForm: FC<SignUpProps> = (props: SignUpProps) => {
             </div>
             <Button disabled={isRegister} className="bg-authgreen text-myblue font-medium px-4 w-full hover:bg-secgreen py-2 rounded-lg mt-5">{isRegister ? <Spinner marginX="auto" size={24}></Spinner> : "Registrieren"}</Button>
             <div className='mt-2'>
-                <Link href="/login"><div className='text-fontwhite cursor-pointer'>Bereits registriert? Jetzt Anmelden</div></Link>
+                <Link passHref href="/login"><div className='text-fontwhite cursor-pointer'>Bereits registriert? Jetzt Anmelden</div></Link>
             </div>
         </form>
     )

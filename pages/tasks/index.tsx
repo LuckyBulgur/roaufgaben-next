@@ -16,7 +16,7 @@ const Tasks: NextPage<TasksPageProps> = () => {
     return (
         <div className="min-h-screen min-w-screen flex flex-wrap bg-gradient-to-t ml-16 from-myblue to-second" >
             {(tasks && tasks.isSuccess && tasks.data?.length != 0) ? tasks.data?.map((task: any, index: number) => (
-                <div className="w-full mt-4" >
+                <div className="w-full mt-4" key={index}>
                     <TaskItem key={index} data={task}></TaskItem>
                 </div>
             )) :
