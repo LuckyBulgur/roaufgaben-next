@@ -36,7 +36,7 @@ const Settings: NextPage = () => {
         <div className="min-h-screen flex min-w-screen ml-16 bg-center dark:bg-gradient-to-t from-myblue to-second" >
 
             <div className="flex w-full justify-center items-center flex-col">
-                <Card className='sm:ml-10 sm:w-30 w-64 md:w-[50%] mt-5 sm:mt-0' title='Letzten 4 Anmeldungen'>
+                <Card className='sm:ml-10 dark:bg-opacity-0 sm:w-96 w-80 md:w-[50%] mt-5' title='Letzten 4 Anmeldungen'>
                     {(sessions && sessions.isSuccess && sessions.data?.length != 0) ? sessions.data?.map((session: any, index: number) => (
                         (index < 4) &&
                         <CardItem key={index}>
@@ -49,11 +49,10 @@ const Settings: NextPage = () => {
                                     </div>
                                 </div>
                                 <div className='flex w-full flex-col mt-2'>
-                                    <div className='flex ml-1 items-center'>
+                                    <div className='flex ml-1 items-center flex-col sm:flex-row'>
                                         <FaWifi></FaWifi>
-                                        <div className='text-lg mt-1 ml-1 text-gray-200'>{session.ip}</div>
-                                        <div className='text-lg mt-1 ml-1 text-gray-200'>{session.location}</div>
-
+                                        <div className='text-sm lg:text-lg mt-1 ml-1 text-gray-200'>{session.ip}</div>
+                                        <div className='mt-1 ml-1 text-sm lg:text-lg text-gray-200'>{session.location}</div>
                                     </div>
                                     <div className='flex text-tiny pl-3 text-gray-200 pr-3 w-max mt-4 bg-gray-700 dark:bg-myblue rounded-lg'>
                                         {formatDistance(new Date(session.reg_date), new Date(), {

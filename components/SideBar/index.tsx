@@ -1,8 +1,7 @@
 import { useRouter } from 'next/router';
 import { FC, HTMLProps, useEffect } from 'react';
-import { BsGearFill } from 'react-icons/bs';
 import { CgProfile } from 'react-icons/cg';
-import { FaMoon, FaSun, FaTasks, FaUsers } from 'react-icons/fa';
+import { FaArrowRight, FaMoon, FaSun, FaTasks, FaUsers } from 'react-icons/fa';
 import { MdDashboard } from 'react-icons/md';
 
 import useDarkMode from '../../hooks/useDarkMode';
@@ -35,14 +34,13 @@ const SideBar: FC = () => {
       <Divider />
 
       <SideBarIcon href="/settings">
-        <BsGearFill size="22" />
+        <FaArrowRight size="22" />
       </SideBarIcon>
 
-      <div className='mt-auto'>
-        <SideBarIcon>
-          <ThemeIcon />
-        </SideBarIcon>
-      </div>
+      <SideBarIcon>
+        <ThemeIcon />
+      </SideBarIcon>
+
 
     </div>
   );
@@ -69,7 +67,8 @@ const ThemeIcon: FC = () => {
 
 const SideBarIcon: FC<SideBarIconProps> = ({ children, href }) => {
   const currentPath = useRouter().pathname;
-  const isActive: Boolean = currentPath === href;
+
+  const isActive = currentPath === href;
   const router = useRouter();
 
   return (

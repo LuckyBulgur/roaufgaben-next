@@ -14,7 +14,7 @@ export const SignOut = () => {
     }
 
     return (
-        <div className='mt-10'>
+        <div className='mt-2 mb-10'>
             <Dialog
                 isShown={isShown}
                 title="Abmelden"
