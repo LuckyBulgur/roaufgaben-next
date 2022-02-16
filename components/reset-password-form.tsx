@@ -1,6 +1,7 @@
 import { SideSheet, Spinner } from 'evergreen-ui';
 import { useFormik } from 'formik';
 import { FC, useState } from 'react';
+import { BrowserView, MobileView } from 'react-device-detect';
 import { TypeOf } from 'zod';
 
 import { ResetPassword } from '../auth/validations';
@@ -51,16 +52,12 @@ export const ResetPasswordForm: FC<ResetPasswordProps> = (props: ResetPasswordPr
 
     return (
         <>
-            <SideSheet
-                isShown={isShown}
-                onCloseComplete={() => setIsShown(false)}
-                preventBodyScrolling
-            >
-                <form className='px-5 bg-gradient-to-t to-[#101726] from-second pt-10 h-full w-full' onSubmit={form.handleSubmit}>
+            <MobileView>
+                <form className='pt-10 h-full w-full' onSubmit={form.handleSubmit}>
                     <div className="mb-5 flex flex-col">
-                        <label className="text-authgreen">Neues Passwort</label>
+                        <label className="dark:text-authgreen">Neues Passwort</label>
                         <input
-                            className="w-full bg-mygray p-2 px-3 rounded-lg text-fontwhite"
+                            className="w-full dark:bg-mygray bg-gray-500 p-2 px-3 rounded-lg text-fontwhite"
                             height={50}
                             width={'100%'}
                             name="password"
@@ -77,8 +74,37 @@ export const ResetPasswordForm: FC<ResetPasswordProps> = (props: ResetPasswordPr
                     </div>
                     <Button disabled={isLoading} className="bg-authgreen w-full text-myblue font-medium px-4 hover:bg-secgreen py-2 rounded-lg mt-5">{isLoading ? <Spinner marginX="auto" size={24}></Spinner> : "Passwort ändern"}</Button>
                 </form>
-            </SideSheet>
-            <button className='w-max bg-authgreen text-myblue font-medium px-4 hover:bg-secgreen py-2 rounded-lg mt-12' onClick={() => setIsShown(true)}>Passwort Ändern</button>
+            </MobileView>
+            <BrowserView>
+                <SideSheet
+                    isShown={isShown}
+                    onCloseComplete={() => setIsShown(false)}
+                    preventBodyScrolling
+                >
+                    <form className='px-5 dark:bg-gradient-to-t to-[#101726] from-second pt-10 h-full w-full' onSubmit={form.handleSubmit}>
+                        <div className="mb-5 flex flex-col">
+                            <label className="dark:text-authgreen">Neues Passwort</label>
+                            <input
+                                className="w-full dark:bg-mygray bg-gray-500 p-2 px-3 rounded-lg text-fontwhite"
+                                height={50}
+                                width={'100%'}
+                                name="password"
+                                placeholder="Passwort"
+                                type="password"
+                                id="password"
+                                autoComplete="current-password"
+                                onChange={form.handleChange}
+                                onBlur={form.handleBlur}
+                            ></input>
+                            {form.touched.password && form.errors.password && (
+                                <p className='text-red mt-1'>{form.errors.password}</p>
+                            )}
+                        </div>
+                        <Button disabled={isLoading} className="bg-authgreen w-full text-myblue font-medium px-4 hover:bg-secgreen py-2 rounded-lg mt-5">{isLoading ? <Spinner marginX="auto" size={24}></Spinner> : "Passwort ändern"}</Button>
+                    </form>
+                </SideSheet>
+                <button className='w-max bg-authgreen text-myblue font-medium px-4 hover:bg-secgreen py-2 rounded-lg mt-12' onClick={() => setIsShown(true)}>Passwort Ändern</button>
+            </BrowserView>
         </>
     )
 }   

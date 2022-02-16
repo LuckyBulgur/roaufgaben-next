@@ -55,7 +55,7 @@ export const CreateClassForm: FC<CreateClassProps> = (props: CreateClassProps) =
     return (
         <form onSubmit={form.handleSubmit}>
             <div className="mb-1">
-                <label className="text-authgreen">Klassenname</label>
+                <label className="dark:text-authgreen text-fontwhite">Klassenname</label>
                 <input
                     className="w-full bg-mygray p-2 px-3 rounded-lg text-fontwhite"
                     height={50}

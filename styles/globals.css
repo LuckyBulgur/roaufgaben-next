@@ -14,8 +14,8 @@
   .sidebar-icon {
     @apply relative flex items-center justify-center 
     h-12 w-12 mt-2 mb-2 mx-auto  
-  bg-gray-400 hover:bg-green-600 dark:bg-gray-800 
-  text-green-500 hover:text-white
+   bg-gray-400 hover:bg-green-600 dark:bg-[#121829]
+  text-gray-800 dark:text-gray-400 hover:text-white
     hover:rounded-xl rounded-3xl
     transition-all duration-300 ease-linear
     cursor-pointer shadow-lg ;
@@ -24,7 +24,7 @@
   .active-icon {
     @apply relative flex items-center justify-center 
     h-12 w-12 mt-2 mb-2 mx-auto  
-  hover:bg-gray-400 bg-green-600 dark:bg-gray-800 
+  hover:bg-gray-400 bg-green-600 dark:bg-[#121829]
   hover:text-green-500 text-white
     hover:rounded-xl rounded-3xl
     transition-all duration-300 ease-linear
@@ -39,8 +39,8 @@
   }
 
   .sidebar-hr {
-    @apply bg-gray-200 dark:bg-gray-800 
-    border border-gray-200 dark:border-gray-800 rounded-full
+    @apply bg-gray-200 dark:bg-gray-500
+    border border-gray-200 dark:border-gray-500 rounded-full
     mx-2;
   }
 }

@@ -43,8 +43,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="description" content="Verwalte deine Schulaufgaben ganz einfach" />
       </Head>
       <QueryClientProvider client={new QueryClient()}>
-        {(!paths.includes(currentPath)) && <SideBar />}
         <Component {...pageProps} />
+        {(!paths.includes(currentPath)) && <SideBar />}
       </QueryClientProvider>
     </>
   );

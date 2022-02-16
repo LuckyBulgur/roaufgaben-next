@@ -18,13 +18,13 @@ const Profile: NextPage = () => {
     }
 
     return (
-        <div className="min-h-screen min-w-screen flex justify-center ml-16 bg-gradient-to-t from-myblue to-second" >
+        <div className="min-h-screen min-w-screen flex justify-center ml-16 dark:bg-gradient-to-t from-myblue to-second" >
             {user && user.isSuccess &&
                 <div className='w-[90%] h-screen'>
-                    <h1 className='text-4xl sm:text-5xl text-fontwhite mt-10 text-center mb-10 font-bold'>{user.data?.username}</h1>
-                    <h1 className='text-fontwhite text-3xl font-bold'>Sicherheit</h1>
+                    <h1 className='text-3xl sm:text-5xl dark:text-fontwhite mt-10 sm:text-center mb-10 font-bold'>{user.data?.username}</h1>
+                    <h1 className='dark:text-fontwhite text-3xl font-bold'>Sicherheit</h1>
                     <div className='flex flex-col'>
-                        <h1 className='text-fontwhite text-xl mt-8 font-bold'>Anmelden in zwei Schritten</h1>
+                        <h1 className='dark:text-fontwhite text-xl mt-4 font-bold'>Anmelden in zwei Schritten</h1>
                         <TwoFactorSwitch haveTwoFactor={user.data?.haveTwoFactor}></TwoFactorSwitch>
                         <ResetPasswordForm onSuccess={() => { onSuccess(), router.push('/login') }}></ResetPasswordForm>
                     </div>

@@ -1,4 +1,5 @@
 import { Switch } from 'evergreen-ui';
+import Img from 'next/image';
 import { FC } from 'react';
 import { useEffect, useState } from 'react';
 
@@ -32,12 +33,12 @@ export const TwoFactorSwitch: FC<TwoFactorSwitchProps> = ({ haveTwoFactor }) => 
         <div>
             <Switch disabled={disabled} className='mt-3' checked={checked} onChange={handleChange} height={25}></Switch>
             {twoFactor.qrcode &&
-                <>
-                    <img alt='qrcode' className='h-40 w-40 mt-5' src={twoFactor.qrcode}></img>
+                <div className='mt-5'>
+                    <Img alt='qrcode' width={160} height={160} src={twoFactor.qrcode}></Img>
                     <div className='mt-2 text-lg'>
-                        <span className='text-fontwhite'>Scanne nun diesen QR Code mit der Google Authenticator App</span>
+                        <span className='dark:text-fontwhite'>Scanne nun diesen QR Code mit der Google Authenticator App</span>
                     </div>
-                </>
+                </div>
             }
         </div>
     );
