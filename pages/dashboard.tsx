@@ -22,7 +22,7 @@ const Dashboard: NextPage = () => {
                             <div className='flex flex-wrap text-2xl m-0 flex-col'>
                                 <div className='font-semibold dark:text-authgreen'>{Subject[task.subject]}</div>
                                 <div className='text-lg mt-1 text-gray-200'>{task.task}</div>
-                                <div className='flex text-tiny pl-3 text-gray-200 pr-3 w-max mt-4 bg-myblue rounded-lg'>
+                                <div className='flex text-tiny pl-3 text-gray-200 pr-3 w-max mt-4 bg-gray-700 dark:bg-myblue rounded-lg'>
                                     {formatDistance(new Date(task.reg_date), new Date(), {
                                         addSuffix: true,
                                         locale: de
@@ -39,7 +39,7 @@ const Dashboard: NextPage = () => {
                             <div className='flex flex-wrap text-2xl m-0 flex-col'>
                                 <div className='font-semibold dark:text-authgreen'>{Subject[task.subject]}</div>
                                 <div className='text-lg mt-1 text-gray-200'>{task.task}</div>
-                                <div className='flex text-tiny pl-3 text-gray-200 pr-3 w-max mt-4 bg-myblue rounded-lg'>
+                                <div className='flex text-tiny pl-3 text-gray-200 pr-3 w-max mt-4 bg-gray-700 dark:bg-myblue rounded-lg'>
                                     {formatDistance(new Date(task.submission), new Date(), {
                                         addSuffix: true,
                                         locale: de

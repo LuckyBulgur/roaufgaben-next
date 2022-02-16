@@ -36,9 +36,9 @@ const Settings: NextPage = () => {
         <div className="min-h-screen flex min-w-screen ml-16 bg-center dark:bg-gradient-to-t from-myblue to-second" >
 
             <div className="flex w-full justify-center items-center flex-col">
-                <Card className='sm:ml-10 sm:w-30 w-64 md:w-[90%] mt-5 sm:mt-0' title='Letzen 5 Anmeldungen'>
+                <Card className='sm:ml-10 sm:w-30 w-64 md:w-[50%] mt-5 sm:mt-0' title='Letzten 4 Anmeldungen'>
                     {(sessions && sessions.isSuccess && sessions.data?.length != 0) ? sessions.data?.map((session: any, index: number) => (
-                        (index < 5) &&
+                        (index < 4) &&
                         <CardItem key={index}>
                             <div className='flex flex-wrap text-2xl m-0'>
                                 <div className='w-full items-center flex flex-row'>
@@ -55,7 +55,7 @@ const Settings: NextPage = () => {
                                         <div className='text-lg mt-1 ml-1 text-gray-200'>{session.location}</div>
 
                                     </div>
-                                    <div className='flex text-tiny pl-3 text-gray-200 pr-3 w-max mt-4 bg-myblue rounded-lg'>
+                                    <div className='flex text-tiny pl-3 text-gray-200 pr-3 w-max mt-4 bg-gray-700 dark:bg-myblue rounded-lg'>
                                         {formatDistance(new Date(session.reg_date), new Date(), {
                                             addSuffix: true,
                                             locale: de

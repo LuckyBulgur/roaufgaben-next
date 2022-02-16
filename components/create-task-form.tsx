@@ -65,9 +65,9 @@ export const CreateTaskForm: FC<CreateTaskProps> = (props: CreateTaskProps) => {
     return (
         <form onSubmit={form.handleSubmit}>
             <div className="mb-5">
-                <label className="dark:text-authgreen text-fontwhite">Fach</label>
+                <label className="dark:text-authgreen text-gray-800">Fach</label>
                 <select
-                    className="w-full bg-mygray p-2 px-3 rounded-lg text-fontwhite"
+                    className="w-full dark:bg-mygray bg-gray-500 p-2 px-3 rounded-lg text-fontwhite"
                     placeholder="Fach"
                     id="subject"
                     name="subject"
@@ -85,9 +85,9 @@ export const CreateTaskForm: FC<CreateTaskProps> = (props: CreateTaskProps) => {
                 )}
             </div>
             <div className="mb-5">
-                <label className="dark:text-authgreen text-fontwhite">Aufgabe</label>
+                <label className="dark:text-authgreen text-gray-800">Aufgabe</label>
                 <input
-                    className="w-full bg-mygray p-2 px-3 rounded-lg text-fontwhite"
+                    className="w-full dark:bg-mygray bg-gray-500 p-2 px-3 rounded-lg text-fontwhite"
                     height={50}
                     width={'100%'}
                     name="task"
@@ -102,9 +102,9 @@ export const CreateTaskForm: FC<CreateTaskProps> = (props: CreateTaskProps) => {
                 )}
             </div>
             <div className="mb-5">
-                <label className="dark:text-authgreen text-fontwhite">Abgabe Termin</label>
+                <label className="dark:text-authgreen text-gray-800">Abgabe Termin</label>
                 <input
-                    className="w-full bg-mygray p-2 px-3 rounded-lg text-fontwhite"
+                    className="w-full dark:bg-mygray bg-gray-500 p-2 px-3 rounded-lg text-fontwhite"
                     height={50}
                     width={'100%'}
                     name="submission"

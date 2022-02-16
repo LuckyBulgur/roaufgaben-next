@@ -40,7 +40,7 @@ const Tasks: NextPage<TasksPageProps> = ({ classId }) => {
                 <div className="flex justify-center  dark:text-fontwhite text-3xl font-semibold items-center">
                     {classes && classes.isSuccess && classes.data?.find((c: any) => c.id == classId)?.name}
                 </div>
-                {classes && classes.isSuccess &&
+                {classes && classes.isSuccess && classes.data?.find((c: any) => c.id == classId)?.link &&
                     <div className='ml-5'>
                         <button
                             onClick={() => { copyLink(`https://roaufgaben.de/join/${classes.data?.find((c: any) => c.id == classId)?.link}`) }}
@@ -54,7 +54,7 @@ const Tasks: NextPage<TasksPageProps> = ({ classId }) => {
                     <TaskItem key={index} data={task}></TaskItem>
                 ))}
                 <Link href={`/tasks/${classId}/create`} passHref>
-                    <div className="w-auto flex justify-center items-center mr-2 h-20 mt-4 rounded-xl bg-myblue backdrop-blur-xl bg-opacity-70 dark:bg-opacity-40 hover:border-green-600 hover:cursor-pointer border-2 text-fontwhite ml-4" >
+                    <div className="w-auto dark:text-fontwhite text-gray-800 flex justify-center items-center mr-2 h-20 mt-4 rounded-xl bg-gray-400 dark:bg-myblue backdrop-blur-xl bg-opacity-70 dark:bg-opacity-40 hover:border-green-600 hover:cursor-pointer border-2 ml-4" >
                         <FaPlus></FaPlus>
                     </div>
                 </Link>

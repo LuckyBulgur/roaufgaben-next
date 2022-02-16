@@ -16,7 +16,7 @@ const Classes: NextPage = () => {
                 {classes && classes.isSuccess && classes.data?.map((_class: any, index: number) => (
                     <ClassItem key={index} data={_class}></ClassItem>
                 ))}
-                <div onClick={() => router.push('/classes/create')} className="w-auto flex justify-center items-center mr-2 h-20 mt-4 rounded-xl bg-myblue backdrop-blur-xl bg-opacity-70 dark:bg-opacity-40 hover:border-green-600 hover:cursor-pointer border-2 text-fontwhite ml-4" >
+                <div onClick={() => router.push('/classes/create')} className="w-auto flex justify-center items-center mr-2 h-20 mt-4 rounded-xl bg-gray-400 dark:bg-myblue b backdrop-blur-xl bg-opacity-70 dark:bg-opacity-40 hover:border-green-600 hover:cursor-pointer border-2 dark:text-fontwhite text-gray-800 ml-4" >
                     <FaPlus></FaPlus>
                 </div>
             </div >

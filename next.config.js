@@ -7,4 +7,8 @@ module.exports = {
   images: {
     domains: ['cdnjs.cloudflare.com', 'raw.githubusercontent.com'],
   },
+  i18n: {
+    locales: ['de-DE'],
+    defaultLocale: 'de-DE'
+  }
 }
