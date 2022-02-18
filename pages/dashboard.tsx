@@ -4,7 +4,7 @@ import { NextPage } from 'next';
 
 import Card, { CardItem } from '../components/card';
 import { Subject } from '../enums/subject';
-import useAllTasks from '../hooks/use-alltasks';
+import useAllTasks from '../hooks/use-all-tasks';
 import useNewestTasks from '../hooks/use-newtasks';
 
 const Dashboard: NextPage = () => {

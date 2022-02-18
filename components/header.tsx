@@ -1,5 +1,6 @@
-import Nav, { Title, Links, Link } from '../components/nav';
 import { FC, HTMLProps } from 'react';
+
+import Nav, { Link, Links, Title } from '../components/nav';
 
 const Header: FC<HTMLProps<HTMLHeadElement>> = (props) => {
     return (
@@ -7,7 +8,7 @@ const Header: FC<HTMLProps<HTMLHeadElement>> = (props) => {
             <Nav>
                 <Title>{props.title}</Title>
                 <Links>
-                    <Link href="/imprint">Platzhalter</Link>
+                    <Link href="/dashboard">Dashboard</Link>
                     <Link href="/login">Anmelden</Link>
                 </Links>
             </Nav>

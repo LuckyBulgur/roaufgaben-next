@@ -21,7 +21,7 @@ const HomePage: FC<HomePageProps> = ({ primaryText, secondaryText }) => {
                 <p className=' text-xs sm:text-lg lg:text-xl text-center text-secondgray mt-7 font-sans'>{secondaryText}</p>
                 <div className="mt-6 sm:mt-8 flex justify-center space-x-6">
                     <LinkButton href='/register'>Jetzt loslegen</LinkButton>
-                    <LinkButton href='/'>Platzhalter</LinkButton>
+                    <LinkButton href='/login'>Anmelden</LinkButton>
                 </div>
             </div>
         </div>

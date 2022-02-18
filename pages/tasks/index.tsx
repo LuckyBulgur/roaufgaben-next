@@ -2,7 +2,7 @@ import { NextPage } from 'next';
 import { useEffect } from 'react';
 
 import TaskItem from '../../components/tasks-item';
-import useAllTasks from '../../hooks/use-alltasks';
+import useAllTasks from '../../hooks/use-all-tasks';
 
 interface TasksPageProps {
     classId: string;
