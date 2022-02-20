@@ -54,8 +54,8 @@ const Tasks: NextPage<TasksPageProps> = ({ classId }) => {
                     <TaskItem key={index} data={task}></TaskItem>
                 ))}
                 <Link href={`/tasks/${classId}/create`} passHref>
-                    <div className="w-auto dark:text-fontwhite text-gray-800 flex justify-center items-center mr-2 h-20 mt-4 rounded-xl bg-gray-400 dark:bg-myblue backdrop-blur-xl bg-opacity-70 dark:bg-opacity-40 hover:border-green-600 hover:cursor-pointer border-2 ml-4" >
-                        <FaPlus></FaPlus>
+                    <div className="flex justify-center items-center mt-4 dark:bg-myblue bg-gray-400 dark:bg-opacity-50 shadow-lg p-3 text-fontwhite font-sans text-xl w-auto ml-4 mr-2 h-16 rounded-xl hover:dark:border-green-700 hover:border-green-500 border-2 dark:border-white border-gray-500 hover:cursor-pointer hover:border-2" >
+                        <FaPlus className='text-gray-600 dark:text-fontwhite'></FaPlus>
                     </div>
                 </Link>
             </div>

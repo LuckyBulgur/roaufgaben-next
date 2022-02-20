@@ -3,7 +3,7 @@ import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
-export const SignOut = () => {
+export const SignOut = ({ ...props }) => {
 
     const [isShown, setIsShown] = useState(false);
     const router = useRouter();
@@ -14,13 +14,17 @@ export const SignOut = () => {
     }
 
     return (
-        <div className='mt-2 mb-10'>
+        <div {...props}>
             <Dialog
                 isShown={isShown}
                 title="Abmelden"
                 onConfirm={() => {
                     setIsShown(false);
                     signOut();
+                    if (router.pathname == '/login') {
+                        router.push('/');
+                        return;
+                    }
                     router.push('/login');
                 }}
                 onCloseComplete={() => {

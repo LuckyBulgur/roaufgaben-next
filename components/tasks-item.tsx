@@ -20,10 +20,10 @@ interface TaskProps {
 
 const TaskItem: FC<TaskProps> = (props: TaskProps) => {
     return (
-        <div className="w-auto mr-2 h-34 mt-4 rounded-xl dark:bg-myblue bg-gray-400 backdrop-blur-xl dark:bg-opacity-40 hover:border-green-600 hover:cursor-pointer border-2 text-fontwhite ml-4" key={props.data.id}>
+        <div className="mt-4 dark:bg-myblue bg-gray-400 dark:border-white border-gray-500  dark:bg-opacity-50 border-2 shadow-lg p-3 text-fontwhite font-sans text-xl w-auto ml-4 mr-2 h-34 rounded-2xl hover:cursor-pointer" key={props.data.id}>
             <div className="font-medium dark:text-fontwhite text-gray-800 text-2xl ml-2 mt-2 font-sans">Fach: {Subject[props.data.subject]}</div>
             <div className="font-medium dark:text-fontwhite text-gray-800 text-2xl ml-2 font-sans">Aufgabe: {props.data.task}</div>
-            <div className="text-xs ml-2 dark:text-fontwhite text-gray-800 mb-0 font-sans">Fällig {formatDistance(new Date(props.data.submission), new Date(), {
+            <div className="text-xs ml-2 dark:text-fontwhite text-gray-800 font-sans">Fällig {formatDistance(new Date(props.data.submission), new Date(), {
                 addSuffix: true,
                 locale: de
             })}</div>
