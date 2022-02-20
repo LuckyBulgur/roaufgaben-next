@@ -18,9 +18,10 @@ const Login: NextPage = () => {
                 {
                     user && user.isSuccess && user.data ?
                         <>
-                            <Title>Bereits angemeldet</Title>
+                            <Title>Angemeldet</Title>
                             <div className='flex justify-center'>
                                 <SignOut></SignOut>
+                                <button onClick={() => router.push('/dashboard')} className='bg-green-600 ml-5 h-10 text-myblue font-medium px-4 w-max hover:bg-green-500 py-2 rounded-lg'>Dashboard</button>
                             </div>
                         </> : <>
                             <Title>Anmelden</Title>
