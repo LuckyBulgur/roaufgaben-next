@@ -17,15 +17,15 @@ export const Title: FC = ({ children }) => {
 
 export const Link: FC<HTMLProps<HTMLAnchorElement>> = ({ children, ...props }) => {
     return (
-        <li className="inline-block mr-4 ml-4">
-            <a className="text-fontwhite hover:text-sky" {...props}>{children}</a>
+        <li className="inline-block sm:mr-4 sm:ml-4 ml-2 mr-2">
+            <a className="text-fontwhite text-sm sm:text-base hover:text-sky" {...props}>{children}</a>
         </li>
     );
 }
 
 export const Links: FC = ({ children }) => {
     return (
-        <ul className="p-7">
+        <ul className="p-2 sm:p-7">
             {children}
         </ul>
     );

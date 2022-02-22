@@ -17,8 +17,8 @@ const HomePage: FC<HomePageProps> = ({ primaryText, secondaryText }) => {
     return (
         <div className="flex h-5/6 justify-center pl-5 pr-5">
             <div className="text-fontwhite max-w-5xl relative pt-20 sm:pt-24 lg:pt-32">
-                <h1 className='text-fontwhite text-6xl sm:text-8xl lg:text-9xl mt-28 font-extrabold text-center tracking-tight font-sans'>{primaryText}</h1>
-                <p className=' text-xs sm:text-lg lg:text-xl text-center text-secondgray mt-7 font-sans'>{secondaryText}</p>
+                <h1 className='text-fontwhite text-5xl sm:text-8xl lg:text-9xl mt-28 font-extrabold text-center tracking-tight font-sans'>{primaryText}</h1>
+                <p className='text-xs sm:text-lg lg:text-xl text-center text-secondgray mt-7 font-sans'>{secondaryText}</p>
                 <div className="mt-6 sm:mt-8 flex justify-center space-x-6">
                     <LinkButton href='/register'>Jetzt loslegen</LinkButton>
                     <LinkButton href='/login'>Anmelden</LinkButton>
