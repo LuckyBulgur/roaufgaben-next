@@ -16,7 +16,7 @@ const Classes: NextPage = () => {
         <div className="min-h-screen min-w-screen flex ml-16 dark:bg-gradient-to-t from-myblue to-second" >
             <Card className='sm:ml-10 w-full mr-3 mt-5 mb-10' title='Klassen'>
                 {(classes && classes.isSuccess && classes.data?.length != 0) && classes.data?.map((_class: any, index: number) => (
-                    <Tooltip text="Klasse ansehen">
+                    <Tooltip key={index} text="Klasse ansehen">
                         <ClassItem key={index} data={_class}></ClassItem>
                     </Tooltip>
                 ))}
