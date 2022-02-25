@@ -37,7 +37,7 @@ const Tasks: NextPage<TasksPageProps> = ({ classId }) => {
 
     return (
         <div className="min-h-screen min-w-screen flex flex-wrap ml-16 dark:bg-gradient-to-t from-myblue to-second" >
-            <div className="w-full mt-4" >
+            <div className="w-full mt-4 mb-4" >
                 <div className="flex justify-center  dark:text-fontwhite text-3xl font-semibold items-center">
                     {classes && classes.isSuccess && classes.data?.find((c: any) => c.id == classId)?.name}
                 </div>

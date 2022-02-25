@@ -10,10 +10,10 @@ const CreateClass: NextPage = () => {
 
     return (
         <div className="min-h-screen min-w-screen flex dark:bg-gradient-to-t items-center justify-center ml-16 from-myblue to-second" >
-            <div className="dark:bg-myblue bg-gray-400 dark:bg-opacity-20 backdrop-blur-xl p-7 rounded-xl">
+            <div className="dark:bg-myblue sm:dark:bg-opacity-20 sm:bg-opacity-20 dark:bg-opacity-0 bg-opacity-0 bg-gray-400 p-7 rounded-xl">
                 <CreateClassForm onSuccess={() => router.push('/classes')}></CreateClassForm>
             </div>
-        </div >
+        </div>
     );
 }
 
