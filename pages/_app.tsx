@@ -3,7 +3,6 @@ import '../styles/globals.css';
 import Cookies from 'js-cookie';
 import { AppProps } from 'next/app';
 import getConfig from 'next/config';
-import Head from 'next/head';
 import Router, { useRouter } from 'next/router';
 import { useCallback, useEffect } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -36,17 +35,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [checkIsUserLoggedIn]);
 
   return (
-    <>
-      <Head>
-        <title>ROaufgaben</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta name="description" content="Verwalte deine Schulaufgaben ganz einfach" />
-      </Head>
-      <QueryClientProvider client={new QueryClient()}>
-        <Component {...pageProps} />
-        {(!paths.includes(currentPath)) && <SideBar />}
-      </QueryClientProvider>
-    </>
+    <QueryClientProvider client={new QueryClient()}>
+      <Component {...pageProps} />
+      {(!paths.includes(currentPath)) && <SideBar />}
+    </QueryClientProvider>
   );
 }
 
