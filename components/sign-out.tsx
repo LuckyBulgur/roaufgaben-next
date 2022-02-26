@@ -9,7 +9,7 @@ export const SignOut = ({ ...props }) => {
     const router = useRouter();
 
 
-    const signOut = async () => {
+    const signOut = () => {
         Cookies.remove('access_token');
     }
 
