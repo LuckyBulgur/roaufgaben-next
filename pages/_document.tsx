@@ -5,7 +5,6 @@ class MyDocument extends Document {
         return (
             <Html>
                 <Head>
-                    <title>ROaufgaben</title>
                     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
                     <meta name="description" content="Verwalte deine Schulaufgaben ganz einfach" />
                     <meta name="theme-color" content="#0f2027"></meta>
