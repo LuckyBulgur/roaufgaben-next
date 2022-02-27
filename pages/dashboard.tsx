@@ -33,7 +33,7 @@ const Dashboard: NextPage = () => {
                         </CardItem>
                     )) : <CardItem><div className='text-center text-gray-200'>Keine Aufgaben vorhanden</div></CardItem>}
                 </Card>
-                <Card className='sm:ml-5 sm:w-30 w-full mt-5 md:w-[70%] sm:mt-0 sm:mr-3' title='Dringende Aufgaben'>
+                <Card className={`sm:ml-5 sm:w-30 w-full mt-5 md:w-[70%] sm:mt-0 sm:mr-3 ${isMobile && "pb-20"}`} title='Dringende Aufgaben'>
                     {(tasks && tasks.isSuccess && tasks.data?.length != 0) ? tasks.data?.map((task: any, index: number) => (
                         (index < 3) &&
                         <CardItem key={index}>

@@ -66,7 +66,7 @@ const Settings: NextPage = () => {
                         </CardItem>
                     )) : <CardItem><div className='text-center text-gray-200'>Keine Anmeldungen vorhanden</div></CardItem>}
                 </Card>
-                <SignOut className='mt-2 pb-20'></SignOut>
+                <SignOut className={`mt-2 ${isMobile && "pb-20"}`}></SignOut>
             </div>
         </div >
     );
