@@ -6,7 +6,7 @@ import getConfig from 'next/config';
 import Head from 'next/head';
 import Router, { useRouter } from 'next/router';
 import { useCallback, useEffect } from 'react';
-import { isMobile } from 'react-device-detect';
+import { BrowserView, MobileView } from 'react-device-detect';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 import BottomBar from '../components/BottomBar';
@@ -47,7 +47,15 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <QueryClientProvider client={new QueryClient()}>
         <Component {...pageProps} />
-        {(!paths.includes(currentPath)) ? (!isMobile) ? < SideBar /> : <BottomBar /> : <></>}
+        {(!paths.includes(currentPath)) && <>
+          <MobileView>
+            <BottomBar></BottomBar>
+          </MobileView>
+          <BrowserView>
+            <SideBar></SideBar>
+          </BrowserView>
+        </>
+        }
       </QueryClientProvider>
     </>
   );
