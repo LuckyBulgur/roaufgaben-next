@@ -47,7 +47,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <QueryClientProvider client={new QueryClient()}>
         <Component {...pageProps} />
-        {(!paths.includes(currentPath)) && (!isMobile) ? < SideBar /> : <BottomBar />}
+        {(!paths.includes(currentPath)) ? (!isMobile) ? < SideBar /> : <BottomBar /> : <></>}
       </QueryClientProvider>
     </>
   );
