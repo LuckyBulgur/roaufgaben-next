@@ -1,6 +1,7 @@
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import { isMobile } from 'react-device-detect';
 
 import Card from '../../../components/card';
 import joinClassMutation from '../../../hooks/join-class-mutation';
@@ -30,7 +31,7 @@ const Join: NextPage<JoinPageProps> = ({ classUUID }) => {
 
 
     return (
-        <div className="min-h-screen min-w-screen flex flex-wrap dark:bg-gradient-to-t ml-16 from-myblue to-second" >
+        <div className={`min-h-screen min-w-screen flex flex-wrap dark:bg-gradient-to-t ${!isMobile && "ml-16"} from-myblue to-second`} >
             <div className='flex justify-center items-center w-full'>
                 {classByUUID && classByUUID.isSuccess && classByUUID.data &&
                     <Card title={`Klasse ${classByUUID.data.name}`}>

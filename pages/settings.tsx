@@ -2,6 +2,7 @@ import { formatDistance } from 'date-fns';
 import { de } from 'date-fns/locale';
 import { NextPage } from 'next';
 import Img from 'next/image';
+import { isMobile } from 'react-device-detect';
 import { FaWifi } from 'react-icons/fa';
 import parser from 'ua-parser-js';
 
@@ -33,7 +34,7 @@ const Settings: NextPage = () => {
     }
 
     return (
-        <div className="min-h-screen flex min-w-screen ml-16 bg-center dark:bg-gradient-to-t from-myblue to-second" >
+        <div className={`min-h-screen flex min-w-screen ${!isMobile && "ml-16"} bg-center dark:bg-gradient-to-t from-myblue to-second`} >
 
             <div className="flex w-full justify-center items-center flex-col">
                 <Card className='sm:ml-10 dark:bg-opacity-0 sm:w-96 w-80 md:w-[50%] mt-5' title='Letzten 4 Anmeldungen'>

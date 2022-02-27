@@ -1,6 +1,7 @@
 import { formatDistance } from 'date-fns';
 import { de } from 'date-fns/locale';
 import { NextPage } from 'next';
+import { isMobile } from 'react-device-detect';
 
 import Card, { CardItem } from '../components/card';
 import { Subject } from '../enums/subject';
@@ -13,9 +14,9 @@ const Dashboard: NextPage = () => {
     const tasks = useAllTasks();
 
     return (
-        <div className="min-h-screen min-w-screen flex ml-16 dark:bg-gradient-to-t from-myblue to-second" >
+        <div className={`min-h-screen min-w-screen flex ${!isMobile && "ml-16"} dark:bg-gradient-to-t from-myblue to-second`}>
             <div className='flex w-full items-center flex-col sm:flex-row'>
-                <Card className='sm:ml-10 sm:w-30 w-64 md:w-[30%] mt-5 sm:mt-0' title='Neuste Aufgaben'>
+                <Card className='sm:ml-10 sm:w-30 w-full md:w-[30%] mt-5 sm:mt-0' title='Neuste Aufgaben'>
                     {(newTasks && newTasks.isSuccess && newTasks.data?.length != 0) ? newTasks.data?.map((task: any, index: number) => (
                         (index < 3) &&
                         <CardItem key={index}>
@@ -32,7 +33,7 @@ const Dashboard: NextPage = () => {
                         </CardItem>
                     )) : <CardItem><div className='text-center text-gray-200'>Keine Aufgaben vorhanden</div></CardItem>}
                 </Card>
-                <Card className='sm:ml-5 sm:w-30 w-64 mt-5 md:w-[70%] sm:mt-0 sm:mr-3' title='Dringende Aufgaben'>
+                <Card className='sm:ml-5 sm:w-30 w-full mt-5 md:w-[70%] sm:mt-0 sm:mr-3' title='Dringende Aufgaben'>
                     {(tasks && tasks.isSuccess && tasks.data?.length != 0) ? tasks.data?.map((task: any, index: number) => (
                         (index < 3) &&
                         <CardItem key={index}>

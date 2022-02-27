@@ -2,6 +2,7 @@ import { NextPage } from 'next';
 import getConfig from 'next/config';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { isMobile } from 'react-device-detect';
 import { FaPlus, FaUserPlus } from 'react-icons/fa';
 
 import TaskItem from '../../../components/tasks-item';
@@ -36,9 +37,9 @@ const Tasks: NextPage<TasksPageProps> = ({ classId }) => {
     }
 
     return (
-        <div className="min-h-screen min-w-screen flex flex-wrap ml-16 dark:bg-gradient-to-t from-myblue to-second" >
+        <div className={`min-h-screen min-w-screen flex flex-wrap ${!isMobile && "ml-16"} dark:bg-gradient-to-t from-myblue to-second`}>
             <div className="w-full mt-4 mb-4" >
-                <div className="flex justify-center  dark:text-fontwhite text-3xl font-semibold items-center">
+                <div className="flex justify-center dark:text-fontwhite text-4xl font-semibold items-center">
                     {classes && classes.isSuccess && classes.data?.find((c: any) => c.id == classId)?.name}
                 </div>
                 {classes && classes.isSuccess && classes.data?.find((c: any) => c.id == classId)?.link &&

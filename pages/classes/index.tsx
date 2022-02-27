@@ -1,5 +1,6 @@
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
+import { isMobile } from 'react-device-detect';
 import { FaPlus } from 'react-icons/fa';
 
 import Card from '../../components/card';
@@ -13,7 +14,7 @@ const Classes: NextPage = () => {
     const router = useRouter();
 
     return (
-        <div className="min-h-screen min-w-screen flex ml-16 dark:bg-gradient-to-t from-myblue to-second" >
+        <div className={`min-h-screen min-w-screen flex ${!isMobile && "ml-16"} dark:bg-gradient-to-t from-myblue to-second`} >
             <Card className='sm:ml-10 w-full mr-3 mt-5 mb-10' title='Klassen'>
                 {(classes && classes.isSuccess && classes.data?.length != 0) && classes.data?.map((_class: any, index: number) => (
                     <Tooltip key={index} text="Klasse ansehen">

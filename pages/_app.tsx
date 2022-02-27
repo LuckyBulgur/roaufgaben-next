@@ -6,8 +6,10 @@ import getConfig from 'next/config';
 import Head from 'next/head';
 import Router, { useRouter } from 'next/router';
 import { useCallback, useEffect } from 'react';
+import { isMobile } from 'react-device-detect';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
+import BottomBar from '../components/BottomBar';
 import SideBar from '../components/SideBar';
 
 const { publicRuntimeConfig } = getConfig()
@@ -39,10 +41,13 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>ROaufgaben</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="description" content="Verwalte deine Schulaufgaben ganz einfach" />
+        <meta name="theme-color" content="#0f2027"></meta>
       </Head>
       <QueryClientProvider client={new QueryClient()}>
         <Component {...pageProps} />
-        {(!paths.includes(currentPath)) && <SideBar />}
+        {(!paths.includes(currentPath)) && (!isMobile) ? < SideBar /> : <BottomBar />}
       </QueryClientProvider>
     </>
   );
